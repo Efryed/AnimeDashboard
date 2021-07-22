@@ -1,0 +1,29 @@
+{
+  "name": "animedashboard",
+  "version": "1.0.0",
+  "description": "Muestra un Dashboard  a partir de la información de una base de datos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Efryed/AnimeDashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Efryed/AnimeDashboard/issues"
+  },
+  "homepage": "https://github.com/Efryed/AnimeDashboard#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "puppeteer": "^10.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
