@@ -2,20 +2,7 @@
 var myChart;
 var chart2;
 
-let f1 = document.querySelector('#date1');
-let f2 = document.querySelector('#date2');
 
-
-f1.addEventListener('input',inputNumber);
-f2.addEventListener('input',inputNumber);
-
-function inputNumber(e){
-    let c = e.target.value;
-    e.target.value = e.target.value.replaceAll(' ','');
-    if(isNaN(c[c.length-1])){
-        e.target.value = e.target.value.slice(0,-1);
-    }
-}
 
 
 function cargarTitulo(){

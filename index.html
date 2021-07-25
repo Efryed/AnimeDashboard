@@ -4,22 +4,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div>
-        <canvas id="myChart"></canvas>
+    <div id="totales">
+
+        <div id="totalObras">
+            <p>Obras:</p>
+            <span>0</span>
+        </div>
+        <div id="totalGeneros">
+            <p>Generos:</p>
+            <span>0</span>
+        </div>
+        <div id="totalTipos">
+            <p>Tipos:</p>
+            <span>0</span>
+        </div>
+        <div id="totalAutores">
+            <p>Autores:</p>
+            <span>0</span>
+        </div>
+        <div id="totalEditoriales">
+            <p>Editoriales:</p>
+            <span>0</span>
+        </div>
+
     </div>
-    <div>
-        <input id="date1">
-        <input id="date2">
-        <button onclick="cargarTitulo()">Cargar</button>
+    <div id="dashboard">
+        <div id="chart-generos">
+            <div class="chart-controls">
+                <div class="select" id="generosTipos">
+                    <button>Tipos ▼</button>
+                    <div class="select-options">
+                        <label for="">
+                            <input type="checkbox" value="Manga">Action
+                        </label>
+                        <label for="">
+                            <input type="checkbox" value="Libro">Libro
+                        </label>
+                        
+                    </div>
+                </div>
+                <button id="actualizarChartObras">Cargar</button>
+            </div>
+            <canvas id="chartGeneros"></canvas>
+        </div>
+        
+        <div id="chart-tipos">
+            <canvas id="chartTipos"></canvas>
+        </div>
+
+        <div id="chart-obras">
+            <div class="chart-controls">
+                <input type="text" id="date1" placeholder="2020"> -
+                <input type="text" id="date2" placeholder="2020">
+                <div class="select" id="obrasGeneros">
+                    <button>Generos ▼</button>
+                    <div class="select-options">
+                        <label for="">
+                            <input type="checkbox" value="Action">Action
+                        </label>
+                        <label for="">
+                            <input type="checkbox" value="Adventure">Adventure
+                        </label>
+                        <label for="">
+                            <input type="checkbox" value="Comedy">Comedy
+                        </label>
+                        <label for="">
+                            <input type="checkbox" value="Comedy">Mecha
+                        </label>
+                        
+                    </div>
+                </div>
+                <div class="select" id="obrasTipos">
+                    <button>Tipos ▼</button>
+                    <div class="select-options">
+                        <label for="">
+                            <input type="checkbox" value="Manga">Action
+                        </label>
+                        <label for="">
+                            <input type="checkbox" value="Libro">Libro
+                        </label>
+                        
+                    </div>
+                </div>
+                <select name="" id="obrasCalificacion">
+                    <option value="0">Mejores</option>
+                    <option value="1">Peores</option>
+                </select>
+                <input type="text" id="numeroObras" placeholder="Resultados">
+                <button id="actualizarChartObras">Cargar</button>
+            </div>
+            <div>
+                <canvas id="chartObras"></canvas>
+            </div>
+        </div>
     </div>
-    <div>
-        <canvas id="myChart2"></canvas>
-    </div>
+    
     
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/static/charts.js"></script>
+
+<script src="/static/js/controls.js"></script>
+
+<!-- <script src="/static/charts.js"></script> -->
 </html>
