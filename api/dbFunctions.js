@@ -17,6 +17,33 @@ query.getGeneros = (result) => {
   });
 };
 
+query.getUltimasObras = (result) =>{
+    let e = "SELECT mangas.id_manga, mangas.titulo_manga, mangas.year, mangas.puntuacion from mangas ORDER BY id_manga DESC LIMIT 10";
+    sql.query(e,(err,res)=>{
+        if(err){
+            console.log("error: ",err);
+            result(err,null);
+            return;
+        }
+        console.log("success");
+        result(null,res);
+    });
+}
+
+query.deleteObra = (id,result) =>{
+    let e = 'Delete from mangas where id_manga = '+id;
+
+    sql.query(e,(err,res)=>{
+        if(err){
+            console.log("error: ",err);
+            result(err,null);
+            return;
+        }
+        console.log("success");
+        result(null,res);
+    });
+}
+
 query.getTitulos = (dates,result) =>{
     let e = "SELECT mangas.titulo_manga, mangas.year, mangas.puntuacion from mangas where mangas.year BETWEEN ? and ? order by mangas.puntuacion DESC LIMIT 10";
     
@@ -227,8 +254,8 @@ query.getAutoresTotal = (data,result) =>{
 
 
 query.getObras = (data,result) =>{
-    let e = "SELECT mangas.titulo_manga, mangas.puntuacion, manga_genero.id_genero, generos.genero FROM mangas INNER JOIN manga_genero on manga_genero.id_manga = mangas.id_manga INNER JOIN generos ON manga_genero.id_genero = generos.id_genero WHERE ";
-
+    let e = "SELECT mangas.titulo_manga, mangas.puntuacion, mangas.year, manga_genero.id_genero, generos.genero FROM mangas INNER JOIN manga_genero on manga_genero.id_manga = mangas.id_manga INNER JOIN generos ON manga_genero.id_genero = generos.id_genero WHERE ";
+    
     if(data.generos.length > 0){
         e += `manga_genero.id_genero IN (${data.generos.reduce((e,r)=>`${e},`+r)}) AND `;
     }
@@ -236,7 +263,7 @@ query.getObras = (data,result) =>{
         e += `mangas.tipo IN (${data.tipos.reduce((e,r)=>`${e},`+r)}) AND `;
     }
 
-    e += `(mangas.year BETWEEN ${data.date.d1} and ${data.date.d2}) GROUP BY mangas.titulo_manga ORDER BY mangas.puntuacion ${data.orden == 0 ? 'DESC':'ASC'} LIMIT ${data.limit}`;
+    e += `(mangas.year BETWEEN ${data.date.d1} and ${data.date.d2}) GROUP BY mangas.titulo_manga ORDER BY mangas.puntuacion ${data.orden == 0 ? 'DESC':'ASC'}${data.limit < 0 ? ``:` LIMIT ${data.limit}`}`;
 
 
     sql.query(e,(err, res)=>{

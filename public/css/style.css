@@ -1,21 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 }
 
 #dashboard{
     margin: auto;
-    width: 90vw;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
 }
 
 #dashboard > div{
-    border: solid 1px black;
+    min-width: 50%;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    
 }
 
 
-.chart-controls{
-    background-color: aqua;
+#dashboard #chart-generos{
+    grid-column: 1 / span 2;
 }
 
 .chart-controls input[type="text"]{
@@ -26,9 +38,16 @@
 }
 
 .chart-controls button{
-    border: solid 1px;
     padding: 5px;
+    border: none;
     border-radius: 50px;
+    box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 .chart-controls select{
@@ -49,12 +68,67 @@
     position: absolute;
     background-color: white;
     display: flex;
-    padding: 5px;
+    padding: 7px;
     min-width: 300px;
-    border: solid 1px red;
     justify-content: right;
     flex-wrap: wrap;
     gap: 10px;
+    top: calc(100% + 10px);
     left: 0;
     font-size: 12px;
+
+    border: 10px;
+    box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+
+#totales{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+#totales > div{
+    padding: 10px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+#totales > div > p{
+    font-weight: bold;
+}
+
+#totales > div > span{
+    text-align: right;
+}
+
+.indicador{
+    display: none;
+}
+
+.indicador-rojo{
+    color: red;
+}
+
+.indicador-verde{
+    color: green;
+}
+
+
+
+
+@media (max-width: 800px) {
+    #dashboard{
+        grid-template-columns: repeat(1,1fr);
+    }    
+    #dashboard #chart-generos{
+        grid-column: auto;
+    }
 }

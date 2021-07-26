@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario</title>
+    <style>
+        label{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="">
+            Nombre: <input type="text" required>
+        </label>
+        <label for="">
+            year: <input type="text" required>
+        </label>
+        <label for="">
+            puntuacion: <input type="text" required>
+        </label>
+        <label for="">
+            Tipo: <input type="text" required>
+        </label>
+        <label for="">
+            Autor: <input type="text" required>
+        </label>
+        <label for="">
+            Editorial: <input type="text" required>
+        </label>
+        <label for="">
+            Generos: <input type="text" required>
+        </label>
+        <input type="submit">
+    </form>
+
+    <div id="titulos">
+
+    </div>
+</body>
+<script>
+
+    document.querySelector('form').addEventListener('submit',load);
+
+    function delet(id){
+        console.log(id);
+        fetch('http://localhost:3000/api/deleteObra/'+id, {
+            method: 'GET', // or 'PUT'
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then(location.reload())
+    }
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        fetch('http://localhost:3000/api/ultimasObras', {
+            method: 'GET', // or 'PUT'
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response =>{ 
+            console.log('Success:', response);
+            let t = '';
+            response.forEach(element => {
+                t += `<div>
+                    <p>${element.titulo_manga}<button onclick="delet(${element.id_manga})">Borrar</button></p>
+                    <div>`;
+            });
+            document.querySelector('#titulos').innerHTML = t;
+        });
+    });
+
+
+    function load(e){
+        e.preventDefault();
+        let info = {};
+        let ele = document.querySelectorAll('input');
+
+        info.nombre = ele[0].value;
+        info.year = isNaN(parseInt(ele[1].value)) ? 2021: parseInt(ele[1].value);
+        info.puntuacion = isNaN(parseFloat(ele[2].value)) ? 8.8: parseInt(ele[2].value);
+        info.desc = '';
+        info.img = '';
+        info.status = 'finalizado';
+        info.tipo = ele[3].value;
+        info.autor = ele[4].value;
+        info.serializacion = ele[5].value;
+        info.generos = ele[6].value.split(',');
+
+        console.log(info);
+
+        fetch('http://localhost:3000/form', {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(info), // data can be `string` or {object}!
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then(location.reload())
+    }
+</script>
+</html>

@@ -13,6 +13,25 @@ router.get('/',(req, res) => {
 })
 
 
+router.get('/ultimasObras',(req,res)=>{
+    dbFunctions.getUltimasObras((err,data)=>{
+        if (err)
+            res.status(500).send({message: err.message || "Error al obtener la informacionr."});
+        else 
+            res.json(data);
+    });
+})
+
+
+router.get('/deleteObra/:id',(req,res)=>{
+    dbFunctions.deleteObra(req.params.id,(err,data)=>{
+        if (err)
+            res.status(500).send({message: err.message || "Error al obtener la informacionr."});
+        else 
+            res.json(data);
+    });
+})
+
 router.get('/generos',(req, res) => {
 
     dbFunctions.getGeneros((err,data)=>{
@@ -43,7 +62,7 @@ router.get('/top/:date1.:date2',(req, res) =>{
 })
 
 router.post('/generos',(req,res) =>{
-    dbFunctions.getGenerosCount(req.body.tipo,(err,data)=>{
+    dbFunctions.getGenerosCount(req.body,(err,data)=>{
         if (err)
             res.status(500).send({message: err.message || "Error al obtener la informacionr."});
         else 
@@ -52,7 +71,6 @@ router.post('/generos',(req,res) =>{
 })
 
 router.post('/obras',(req,res)=>{
-    console.log('d')
     console.log(req.body);
     dbFunctions.getObras(req.body,(err,data)=>{
         if (err)
