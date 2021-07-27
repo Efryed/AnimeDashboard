@@ -300,7 +300,7 @@ CREATE TABLE `mangas` (
   `id_manga` int(11) NOT NULL,
   `titulo_manga` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` int(11) NOT NULL,
-  `puntuacion` decimal(3,2) NOT NULL,
+  `puntuacion` decimal(5,2) NOT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `portada` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) DEFAULT NULL,
